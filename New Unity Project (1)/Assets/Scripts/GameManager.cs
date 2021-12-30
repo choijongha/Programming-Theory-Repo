@@ -30,15 +30,16 @@ public class GameManager : MonoBehaviour
     {
        
     }
+    
+    private void LateUpdate()
+    {
+        playerCameraObject.transform.position = playerObject.transform.position + playerCameraView;
+    }
     IEnumerator RoundStart()
     {
         yield return new WaitForSeconds(5f);
         isRoundStart = true;
         playerCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);
-    }
-    private void LateUpdate()
-    {
-        playerCameraObject.transform.position = playerObject.transform.position + playerCameraView;
     }
 }
