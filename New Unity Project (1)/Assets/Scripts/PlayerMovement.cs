@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody playerRb;
     private GameManager MainManager;
     private Vector3 mousePos;
+
     private NavMeshAgent playerNavMA;
 
     public LayerMask clickMask;
@@ -19,10 +20,12 @@ public class PlayerMovement : MonoBehaviour
         playerNavMA.speed = Speed;
         playerNavMA.acceleration = 999;
         playerNavMA.angularSpeed = 999;
+
+        playerRb = GetComponent<Rigidbody>();
     }
     void Start()
     {
-        playerRb = GetComponent<Rigidbody>();
+        
     }
     private void FixedUpdate()
     {
@@ -43,20 +46,17 @@ public class PlayerMovement : MonoBehaviour
             {
             //playerRb.AddForce(MousePosOnPlane() - transform.position, ForceMode.Impulse);
             //Debug.Log(mousePos);
-            Debug.Log(MousePosOnPlane());
-            GoTo(MousePosOnPlane());
+            MousePosOnPlane();
         }
     }
-    private Vector3 MousePosOnPlane() 
+    private void MousePosOnPlane() 
     {
-        Vector3 clickPos = Vector3.one;
         Ray ray = MainManager.playerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, clickMask))
         {
-            clickPos = hit.point;
+            playerNavMA.SetDestination(hit.point);
         }
-        return clickPos;
 
     }
     public virtual void GoTo(Vector3 position)
