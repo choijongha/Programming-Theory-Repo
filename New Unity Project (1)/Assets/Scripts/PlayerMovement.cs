@@ -10,9 +10,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 mousePos;
 
     private NavMeshAgent playerNavMA;
-
-    public LayerMask clickMask;
-    public float Speed = 3;
+    public float Speed = 10;
+    public LayerMask groundlayer;
     private void Awake()
     {
         MainManager = GameObject.Find("Main Manager").gameObject.GetComponent<GameManager>();
@@ -27,12 +26,12 @@ public class PlayerMovement : MonoBehaviour
     {
         
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        if (MainManager.isRoundStart)
+        if (MainManager.isRoundStart && Input.GetMouseButtonDown(1))
         {
             //MousePosWorldPoint();
-            PlayerMoveMousePos();
+            MousePosOnPlane();
         }
     }
     /*private Vector3 MousePosWorldPoint()
@@ -40,22 +39,14 @@ public class PlayerMovement : MonoBehaviour
         mousePos = MainManager.playerCamera.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, MainManager.cameraHeight));
         return mousePos;
     }*/
-    private void PlayerMoveMousePos()
-    {
-        if (Input.GetMouseButtonDown(1))
-            {
-            //playerRb.AddForce(MousePosOnPlane() - transform.position, ForceMode.Impulse);
-            //Debug.Log(mousePos);
-            MousePosOnPlane();
-        }
-    }
     private void MousePosOnPlane() 
     {
         Ray ray = MainManager.playerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, clickMask))
+        if (Physics.Raycast(ray, out hit, groundlayer))
         {
             playerNavMA.SetDestination(hit.point);
+            playerNavMA.isStopped = false;
         }
 
     }
@@ -63,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     {
     
         playerNavMA.SetDestination(position);
-        playerNavMA.isStopped = false;
+        
     }
 
 }

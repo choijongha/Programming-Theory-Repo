@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerCameraObject;
     [SerializeField] private GameObject playerObject;
 
-    public float cameraHeight = 10f;
+    [SerializeField] float cameraHeight = 10f;
     private Vector3 playerCameraView;
     public Camera playerCamera { get; private set; }
     
