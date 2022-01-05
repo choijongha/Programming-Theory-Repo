@@ -10,17 +10,20 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 mousePos;
 
     private NavMeshAgent playerNavMA;
-    public float Speed = 10;
+    public float speed = 10;
     public LayerMask groundlayer;
+    Vector3 velocity = Vector3.zero;
     private void Awake()
     {
         MainManager = GameObject.Find("Main Manager").gameObject.GetComponent<GameManager>();
         playerNavMA = GetComponent<NavMeshAgent>();
-        playerNavMA.speed = Speed;
+        //playerNavMA.speed = speed;
         playerNavMA.acceleration = 999;
         playerNavMA.angularSpeed = 999;
 
         playerRb = GetComponent<Rigidbody>();
+
+        //playerNavMA.updatePosition = false;
     }
     void Start()
     {
@@ -28,10 +31,11 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (MainManager.isRoundStart && Input.GetMouseButtonDown(1))
+        PlayerRotate();
+        MousePosOnPlane();
+        if (playerNavMA.isStopped == true)
         {
-            //MousePosWorldPoint();
-            MousePosOnPlane();
+            playerNavMA.velocity = Vector3.zero;
         }
     }
     /*private Vector3 MousePosWorldPoint()
@@ -41,20 +45,56 @@ public class PlayerMovement : MonoBehaviour
     }*/
     private void MousePosOnPlane() 
     {
-        Ray ray = MainManager.playerCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, groundlayer))
+        if (MainManager.isRoundStart && Input.GetMouseButtonDown(1))
         {
-            playerNavMA.SetDestination(hit.point);
-            playerNavMA.isStopped = false;
-        }
+         //MousePosWorldPoint();
+         Ray ray = MainManager.playerCamera.ScreenPointToRay(Input.mousePosition);
+         RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, groundlayer))
+            {
 
+            playerNavMA.isStopped = false;
+
+            if (playerNavMA.speed == 0)
+                {
+                    playerNavMA.speed = speed;
+                }
+            playerNavMA.SetDestination(hit.point);
+
+            transform.position = Vector3.SmoothDamp(transform.position, playerNavMA.nextPosition, ref velocity, 0.1f);
+            }
+        }
     }
-    public virtual void GoTo(Vector3 position)
+    private void PlayerRotate()
     {
-    
-        playerNavMA.SetDestination(position);
+        // ScreenToWorldPoint를 사용해 마우스 위치를 가져옴.
+        Vector3 mousePosition = Input.mousePosition;
+        Vector3 playerPosition = transform.position;
+
+        mousePosition.z = playerPosition.y - MainManager.playerCamera.transform.position.y;
         
+        Vector3 target = MainManager.playerCamera.ScreenToWorldPoint(mousePosition);
+
+        float dx = target.x - playerPosition.x;
+        float dz = target.z - playerPosition.z;
+
+        float rotateDegree = Mathf.Atan2(-dx,-dz) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
+
+        // Ray로 마우스위치를 가져옴.
+        /*Vector3 mousePosition = Input.mousePosition;
+        Vector3 playerPosition = transform.position;
+
+        Ray mouseRay = MainManager.playerCamera.ScreenPointToRay(mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(mouseRay, out hit))
+        {
+            float dx = hit.point.x - playerPosition.x;
+            float dy = hit.point.z - playerPosition.z;
+
+            float rotateDegree = Mathf.Atan2(dx, dy) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
+        }*/
     }
 
 }
