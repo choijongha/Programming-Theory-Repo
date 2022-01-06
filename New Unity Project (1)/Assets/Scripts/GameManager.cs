@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     private Vector3 playerCameraView;
     public Camera playerCamera { get; private set; }
+    public bool IsDoorOpen { get; private set; } = false;
     
 
     private void Awake()
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
         if (openDoor.transform.position.x >= 4.5f)
         {
             openDoorRb.isKinematic = true;
+            IsDoorOpen = true;
         }
         else
         {
