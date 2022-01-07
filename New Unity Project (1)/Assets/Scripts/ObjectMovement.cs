@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class ObjectMovement : MonoBehaviour
 {
+    public List<GameObject> prefabList;
+    private int prefabDongCount;
+
     private Rigidbody objectRb;
     private GameManager gameManager;
     public int speed = 0;
+    [SerializeField] GameObject dongPrefab;
     private void Awake()
     {
         objectRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Main Manager").GetComponent<GameManager>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
     }
     protected virtual void InitialStart()
     {
@@ -27,4 +25,21 @@ public class ObjectMovement : MonoBehaviour
             transform.position = initialPos;
         }
     }
+    protected virtual void InvokeInstantiate()
+    {
+        InvokeRepeating("InstantiateDong", 1f, 1f);
+    }
+    private void InstantiateDong()
+    { 
+        prefabDongCount++;
+        prefabList.Add(Instantiate(dongPrefab, transform.position, transform.rotation));
+
+        if(prefabDongCount > 10)
+        {
+            GameObject.Destroy(prefabList[0].gameObject);
+            prefabDongCount--;
+            prefabList.RemoveAt(0);
+        }
+    }
+    
 }
