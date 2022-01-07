@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerRotate()
     {
         // ScreenToWorldPoint를 사용해 마우스 위치를 가져옴.
-        Vector3 mousePosition = Input.mousePosition;
+        /*Vector3 mousePosition = Input.mousePosition;
         Vector3 playerPosition = transform.position;
 
         mousePosition.z = playerPosition.y - MainManager.playerCamera.transform.position.y;
@@ -79,10 +79,10 @@ public class PlayerMovement : MonoBehaviour
         float dz = target.z - playerPosition.z;
 
         float rotateDegree = Mathf.Atan2(-dx,-dz) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
+        transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);*/
 
         // Ray로 마우스위치를 가져옴.
-        /*Vector3 mousePosition = Input.mousePosition;
+        Vector3 mousePosition = Input.mousePosition;
         Vector3 playerPosition = transform.position;
 
         Ray mouseRay = MainManager.playerCamera.ScreenPointToRay(mousePosition);
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
 
             float rotateDegree = Mathf.Atan2(dx, dy) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
-        }*/
+        }
     }
 
 }
