@@ -10,9 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 mousePos;
 
     private NavMeshAgent playerNavMA;
-    public float speed = 10;
-    public LayerMask groundlayer;
-    Vector3 velocity = Vector3.zero;
+    public float speed = 0;
+    [SerializeField] LayerMask groundlayer;
+    [SerializeField] GameObject trail;
     private void Awake()
     {
         MainManager = GameObject.Find("Main Manager").gameObject.GetComponent<GameManager>();
@@ -27,16 +27,18 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
-        
+        playerNavMA.speed = speed;
     }
     private void Update()
     {
+        
         PlayerRotate();
         MousePosOnPlane();
         if (playerNavMA.isStopped == true)
         {
             playerNavMA.velocity = Vector3.zero;
         }
+        InstantiateParticle();
     }
     /*private Vector3 MousePosWorldPoint()
     {
@@ -61,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             playerNavMA.SetDestination(hit.point);
 
-            transform.position = Vector3.SmoothDamp(transform.position, playerNavMA.nextPosition, ref velocity, 0.1f);
+            //transform.position = Vector3.SmoothDamp(transform.position, playerNavMA.nextPosition, ref velocity, 0.1f);
             }
         }
     }
@@ -95,6 +97,10 @@ public class PlayerMovement : MonoBehaviour
             float rotateDegree = Mathf.Atan2(dx, dy) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
         }
+    }
+    private void InstantiateParticle()
+    {
+        trail.transform.position = transform.position;
     }
 
 }

@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     public bool isRoundStart { get; private set; }
-    Queue objectQueue;
 
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject playerCameraObject;

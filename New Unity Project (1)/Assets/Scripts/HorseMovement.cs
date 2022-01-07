@@ -7,7 +7,7 @@ public class HorseMovement : ObjectMovement
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("InstantiateDong", 1f, 1f);
+        InvokeInstantiate();
         speed = 20;
     }
 
