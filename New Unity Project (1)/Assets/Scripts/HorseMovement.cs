@@ -14,10 +14,14 @@ public class HorseMovement : ObjectMovement
     // Update is called once per frame
     void Update()
     {
-        InitialStart();
+        AnimalMovement();
     }
-    protected override void InitialStart()
+    protected override void AnimalMovement()
     {
-        base.InitialStart();
+        base.AnimalMovement();
+    }
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
     }
 }

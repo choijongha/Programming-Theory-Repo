@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class GameManager : MonoBehaviour
 {
     public bool isRoundStart { get; private set; }
+    public bool IsDoorOpen { get; private set; } = false;
 
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject playerCameraObject;
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private Vector3 playerCameraView;
     public Camera playerCamera { get; private set; }
-    public bool IsDoorOpen { get; private set; } = false;
+    
     
 
     private void Awake()
