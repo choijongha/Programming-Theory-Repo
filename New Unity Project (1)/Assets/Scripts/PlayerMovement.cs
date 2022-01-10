@@ -13,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 0;
     [SerializeField] LayerMask groundlayer;
     [SerializeField] GameObject trail;
+    [SerializeField] GameObject catchTrail;
+
+    private float restoreCatchTrail;
+    private bool trailShoot;
     private void Awake()
     {
         MainManager = GameObject.Find("Main Manager").gameObject.GetComponent<GameManager>();
@@ -28,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerNavMA.speed = speed;
+        restoreCatchTrail = catchTrail.transform.localPosition.z;
     }
     private void Update()
     {
@@ -39,6 +44,15 @@ public class PlayerMovement : MonoBehaviour
             playerNavMA.velocity = Vector3.zero;
         }
         InstantiateParticle();
+        ThrowTrail();
+        ThrowTrailBack();
+
+        if (trailShoot)
+        {
+            StartCoroutine("TrailBack");
+        }
+        
+
     }
     /*private Vector3 MousePosWorldPoint()
     {
@@ -102,5 +116,29 @@ public class PlayerMovement : MonoBehaviour
     {
         trail.transform.position = transform.position;
     }
+    private void ThrowTrail()
+    {
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            
+            restoreCatchTrail += 10f * Time.deltaTime;
+            
+        }
+    }
+    private void ThrowTrailBack()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            catchTrail.transform.localPosition = new Vector3(0, 0, restoreCatchTrail);
+            trailShoot = true;
+        }
+    }
+    IEnumerable TrailBack()
+    {
+        yield return new WaitForSeconds(1f);
+        Debug.Log("z");
+        catchTrail.transform.localPosition = Vector3.zero;
+        trailShoot = false;
+    }
 }
