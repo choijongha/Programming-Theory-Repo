@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     public bool isRoundStart { get; private set; }
     public bool IsDoorOpen { get; private set; } = false;
 
-    [SerializeField] Camera mainCamera;
     [SerializeField] GameObject playerCameraObject;
     [SerializeField] GameObject playerObject;
     [SerializeField] float cameraHeight = 10f;
@@ -48,7 +47,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator RoundStart()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         isRoundStart = true;
         //playerCamera.gameObject.SetActive(true);
         //mainCamera.gameObject.SetActive(false);

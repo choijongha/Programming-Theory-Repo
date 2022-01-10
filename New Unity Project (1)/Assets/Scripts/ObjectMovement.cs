@@ -11,6 +11,12 @@ public class ObjectMovement : MonoBehaviour
     private GameManager gameManager;
     public int speed = 0;
     private bool OnplayerTrigger;
+    private bool OnArea1;
+    private bool OnArea2;
+    private bool OnArea3;
+    private bool OnArea4;
+
+
     [SerializeField] GameObject dongPrefab;
     private void Awake()
     {
@@ -20,7 +26,7 @@ public class ObjectMovement : MonoBehaviour
     protected virtual void AnimalMovement()
     {
         InitialMovemenet();
-        PlayerTrigger();
+        AreaMove();
     }
     protected virtual void InvokeInstantiate() 
     {
@@ -37,6 +43,7 @@ public class ObjectMovement : MonoBehaviour
             prefabDongCount--;
             prefabList.RemoveAt(0);
         }
+        
     }
 
     protected virtual void OnTriggerEnter(Collider other)
@@ -44,6 +51,36 @@ public class ObjectMovement : MonoBehaviour
         if(other.gameObject.tag == "Player" && gameManager.isRoundStart)
         {
             OnplayerTrigger = true;
+        }
+        if(other.gameObject.tag == "Area1")
+        {
+            OnArea1 = true;
+            OnArea2 = false;
+            OnArea3 = false;
+            OnArea4 = false;
+            
+        }
+        else if (other.gameObject.tag == "Area2")
+        {
+            OnArea2 = true;
+            OnArea1 = false;
+            OnArea3 = false;
+            OnArea4 = false;
+
+        }
+        else if (other.gameObject.tag == "Area3")
+        {
+            OnArea3 = true;
+            OnArea2 = false;
+            OnArea1 = false;
+            OnArea4 = false;
+        }
+        else if (other.gameObject.tag == "Area4")
+        {
+            OnArea4 = true;
+            OnArea2 = false;
+            OnArea3 = false;
+            OnArea1 = false;
         }
     }
 
@@ -56,11 +93,23 @@ public class ObjectMovement : MonoBehaviour
             transform.position = initialPos;
         };
     }
-    private void PlayerTrigger()
+    private void AreaMove()
     {
-        if (OnplayerTrigger)
+        if (OnArea1)
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime;
+        }
+        else if (OnArea2)
+        {
+            transform.position += Vector3.forward * speed * Time.deltaTime;
+        }
+        else if (OnArea3)
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
-    }
+        else if (OnArea4)
+        {
+            transform.position += Vector3.back * speed * Time.deltaTime;
+        }
+    }   
 }

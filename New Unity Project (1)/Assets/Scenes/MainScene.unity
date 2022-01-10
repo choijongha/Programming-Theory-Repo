@@ -379,7 +379,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &511118284
 BoxCollider:
@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: 989725028}
   m_Layer: 0
   m_Name: GroundArea1
-  m_TagString: Area
+  m_TagString: Area1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -835,11 +835,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989725027}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 1, z: 20}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 25.664824, y: 1, z: 8.412854}
+  m_Center: {x: -2.832412, y: 0, z: -5.793571}
 --- !u!4 &989725029
 Transform:
   m_ObjectHideFlags: 0
@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 993428760}
   m_Layer: 0
   m_Name: GroundArea4
-  m_TagString: Area
+  m_TagString: Area4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -879,11 +879,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993428759}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 1, z: 20}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 10.730287, y: 1, z: 36.2286}
+  m_Center: {x: 4.634855, y: 0, z: -8.114296}
 --- !u!4 &993428761
 Transform:
   m_ObjectHideFlags: 0
@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 1147409727}
   m_Layer: 0
   m_Name: GroundArea3
-  m_TagString: Area
+  m_TagString: Area3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -923,11 +923,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147409726}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 1, z: 20}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 49.79281, y: 1, z: 17.176355}
+  m_Center: {x: 14.896401, y: 0, z: 1.4118207}
 --- !u!4 &1147409728
 Transform:
   m_ObjectHideFlags: 0
@@ -1101,7 +1101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0de76c56100a247b3714315f5568e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194227}
   playerCameraObject: {fileID: 1837832491}
   playerObject: {fileID: 2082067209}
   cameraHeight: 15
@@ -1630,7 +1629,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!208 &1888145955
 NavMeshObstacle:
@@ -1755,7 +1754,7 @@ GameObject:
   - component: {fileID: 1956856536}
   m_Layer: 0
   m_Name: GroundArea2
-  m_TagString: Area
+  m_TagString: Area2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1768,11 +1767,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956856535}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 1, z: 20}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 9.442827, y: 1, z: 28.497236}
+  m_Center: {x: -5.2785864, y: 0, z: -4.248618}
 --- !u!4 &1956856537
 Transform:
   m_ObjectHideFlags: 0
@@ -1781,7 +1780,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956856535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.2, y: 0, z: -33}
+  m_LocalPosition: {x: -32.6, y: 0, z: -23.3}
   m_LocalScale: {x: 1.1341, y: 1.1341, z: 1.1341}
   m_Children: []
   m_Father: {fileID: 0}
