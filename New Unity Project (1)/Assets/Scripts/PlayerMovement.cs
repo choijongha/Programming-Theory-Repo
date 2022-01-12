@@ -44,15 +44,6 @@ public class PlayerMovement : MonoBehaviour
             playerNavMA.velocity = Vector3.zero;
         }
         InstantiateParticle();
-        ThrowTrail();
-        ThrowTrailBack();
-
-        if (trailShoot)
-        {
-            StartCoroutine("TrailBack");
-        }
-        
-
     }
     /*private Vector3 MousePosWorldPoint()
     {
@@ -115,30 +106,5 @@ public class PlayerMovement : MonoBehaviour
     private void InstantiateParticle()
     {
         trail.transform.position = transform.position;
-    }
-    private void ThrowTrail()
-    {
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            
-            restoreCatchTrail += 10f * Time.deltaTime;
-            
-        }
-    }
-    private void ThrowTrailBack()
-    {
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            catchTrail.transform.localPosition = new Vector3(0, 0, restoreCatchTrail);
-            trailShoot = true;
-        }
-    }
-    IEnumerable TrailBack()
-    {
-        yield return new WaitForSeconds(1f);
-        Debug.Log("z");
-        catchTrail.transform.localPosition = Vector3.zero;
-        trailShoot = false;
     }
 }

@@ -7,6 +7,7 @@ public class CowMovement : ObjectMovement
     // Start is called before the first frame update
     void Start()
     {
+        IsStart();
         InvokeInstantiate();
         speed = 10;
     }
@@ -15,9 +16,14 @@ public class CowMovement : ObjectMovement
     void Update()
     {
         AnimalMovement();
+
     }
     protected override void AnimalMovement()
     {
         base.AnimalMovement();
+    }
+    protected override void OnPlayerTrigger()
+    {
+        base.OnPlayerTrigger();
     }
 }

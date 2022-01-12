@@ -265,8 +265,8 @@ GameObject:
   - component: {fileID: 511118279}
   - component: {fileID: 511118283}
   - component: {fileID: 511118282}
-  - component: {fileID: 511118284}
   - component: {fileID: 511118285}
+  - component: {fileID: 511118284}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Untagged
@@ -392,7 +392,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 40, y: 0, z: 40}
+  m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!208 &511118285
 NavMeshObstacle:
@@ -967,8 +967,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 25.664824, y: 1, z: 8.412854}
-  m_Center: {x: -2.832412, y: 0, z: -5.793571}
+  m_Size: {x: 87.83874, y: 1, z: 10.222357}
+  m_Center: {x: -29.119051, y: 0, z: -11.387087}
 --- !u!4 &989725029
 Transform:
   m_ObjectHideFlags: 0
@@ -1011,8 +1011,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.730287, y: 1, z: 41.049}
-  m_Center: {x: 4.634855, y: 0, z: -5.7040925}
+  m_Size: {x: 8.741991, y: 1, z: 87.1735}
+  m_Center: {x: 9.8365135, y: 0, z: -28.76635}
 --- !u!4 &993428761
 Transform:
   m_ObjectHideFlags: 0
@@ -1055,8 +1055,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 49.79281, y: 1, z: 17.176355}
-  m_Center: {x: 14.896401, y: 0, z: 1.4118207}
+  m_Size: {x: 87.93055, y: 1, z: 10.02038}
+  m_Center: {x: 29.314178, y: 0, z: 9.11263}
 --- !u!4 &1147409728
 Transform:
   m_ObjectHideFlags: 0
@@ -1632,8 +1632,8 @@ GameObject:
   - component: {fileID: 1888145949}
   - component: {fileID: 1888145954}
   - component: {fileID: 1888145952}
-  - component: {fileID: 1888145953}
   - component: {fileID: 1888145955}
+  - component: {fileID: 1888145953}
   m_Layer: 0
   m_Name: Horse
   m_TagString: Untagged
@@ -1743,7 +1743,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15, y: 1, z: 15}
+  m_Size: {x: 5, y: 1, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1888145954
 Rigidbody:
@@ -1771,7 +1771,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 2.5, y: 0.5, z: 2.5}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1
@@ -1900,8 +1900,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.442827, y: 1, z: 28.497236}
-  m_Center: {x: -5.2785864, y: 0, z: -4.248618}
+  m_Size: {x: 9.026534, y: 1, z: 86.85735}
+  m_Center: {x: -10.234277, y: 0, z: 21.045488}
 --- !u!4 &1956856537
 Transform:
   m_ObjectHideFlags: 0
@@ -1931,6 +1931,7 @@ GameObject:
   - component: {fileID: 2082067210}
   - component: {fileID: 2082067215}
   - component: {fileID: 2082067216}
+  - component: {fileID: 2082067217}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2071,3 +2072,16 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &2082067217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082067209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

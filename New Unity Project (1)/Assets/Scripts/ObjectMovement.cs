@@ -9,28 +9,44 @@ public class ObjectMovement : MonoBehaviour
 
     private Rigidbody objectRb;
     private GameManager gameManager;
+    private Vector3 initialPos;
     public int speed = 0;
-    private bool OnplayerTrigger;
-    private bool OnArea1;
-    private bool OnArea2;
-    private bool OnArea3;
-    private bool OnArea4;
 
+    private bool onplayerTrigger;
+    private bool onArea1;
+    private bool onArea2;
+    private bool onArea3;
+    private bool onArea4;
+    private bool onInstant;
+    public bool isCatch;
+
+    private GameObject player;
 
     [SerializeField] GameObject dongPrefab;
     private void Awake()
     {
         objectRb = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("Main Manager").GetComponent<GameManager>();
+        player = GameObject.Find("Player");
+    }
+    protected virtual void IsStart()
+    {
+        initialPos = transform.position;
+        onInstant = true;
     }
     protected virtual void AnimalMovement()
     {
         InitialMovemenet();
+        OnPlayerTrigger();
         AreaMove();
     }
     protected virtual void InvokeInstantiate() 
     {
-        InvokeRepeating("InstantiateDong", 1f, 1f);
+        if (onInstant)
+        {
+            InvokeRepeating("InstantiateDong", 1f, 1f);
+        }
+        
     }
     private void InstantiateDong()
     { 
@@ -42,48 +58,51 @@ public class ObjectMovement : MonoBehaviour
             GameObject.Destroy(prefabList[0].gameObject);
             prefabDongCount--;
             prefabList.RemoveAt(0);
-        }
-        
+        } 
     }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Player" && gameManager.isRoundStart)
         {
-            OnplayerTrigger = true;
+            onArea1 = false;
+            onArea2 = false;
+            onArea3 = false;
+            onArea4 = false;
+            onplayerTrigger = true;
         }
-        if(other.gameObject.tag == "Area1")
+        if(other.gameObject.tag == "Area1" && !onplayerTrigger)
         {
-            OnArea1 = true;
-            OnArea2 = false;
-            OnArea3 = false;
-            OnArea4 = false;
+            onArea1 = true;
+            onArea2 = false;
+            onArea3 = false;
+            onArea4 = false;
             
         }
-        else if (other.gameObject.tag == "Area2")
+        else if (other.gameObject.tag == "Area2" && !onplayerTrigger)
         {
-            OnArea2 = true;
-            OnArea1 = false;
-            OnArea3 = false;
-            OnArea4 = false;
+            onArea2 = true;
+            onArea1 = false;
+            onArea3 = false;
+            onArea4 = false;
 
         }
-        else if (other.gameObject.tag == "Area3")
+        else if (other.gameObject.tag == "Area3" && !onplayerTrigger)
         {
-            OnArea3 = true;
-            OnArea2 = false;
-            OnArea1 = false;
-            OnArea4 = false;
+            onArea3 = true;
+            onArea2 = false;
+            onArea1 = false;
+            onArea4 = false;
         }
-        else if (other.gameObject.tag == "Area4")
+        else if (other.gameObject.tag == "Area4" && !onplayerTrigger)
         {
-            OnArea4 = true;
-            OnArea2 = false;
-            OnArea3 = false;
-            OnArea1 = false;
+            onArea4 = true;
+            onArea2 = false;
+            onArea3 = false;
+            onArea1 = false;
         }
+        
     }
-
     private void InitialMovemenet()
     {
         if (gameManager.IsDoorOpen && !gameManager.isRoundStart)
@@ -91,25 +110,55 @@ public class ObjectMovement : MonoBehaviour
             Vector3 initialPos = transform.position;
             initialPos.z = initialPos.z + speed * Time.deltaTime;
             transform.position = initialPos;
+            
         };
     }
     private void AreaMove()
     {
-        if (OnArea1)
+        if (onArea1)
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
         }
-        else if (OnArea2)
+        else if (onArea2)
         {
             transform.position += Vector3.forward * speed * Time.deltaTime;
         }
-        else if (OnArea3)
+        else if (onArea3)
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
         }
-        else if (OnArea4)
+        else if (onArea4)
         {
             transform.position += Vector3.back * speed * Time.deltaTime;
         }
+        
     }   
+    protected virtual void OnPlayerTrigger()
+    {
+        if (onplayerTrigger)
+        {
+            transform.position = initialPos;
+            onInstant = false;
+            isCatch = true;
+        }
+    }
+    private void RandomSystem()
+    {
+        int randomBool = Random.Range(0, 4);
+        switch (randomBool)
+        {
+            case 0:
+                onArea1 = true;
+                break;
+            case 1:
+                onArea2 = true;
+                break;
+            case 2:
+                onArea3 = true;
+                break;
+            case 3:
+                onArea4 = true;
+                break;
+        }
+    }
 }

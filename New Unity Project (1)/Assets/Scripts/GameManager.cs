@@ -10,15 +10,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject playerCameraObject;
     [SerializeField] GameObject playerObject;
+    Vector3 playerPos;
     [SerializeField] float cameraHeight = 10f;
     [SerializeField] GameObject openDoor;
     private Rigidbody openDoorRb;
+    private Vector3 openDoorPos;
+    [SerializeField] CowMovement cow;
+    [SerializeField] HorseMovement horse;
 
     private Vector3 playerCameraView;
     public Camera playerCamera { get; private set; }
     
-    
-
     private void Awake()
     {
         playerCamera = playerCameraObject.transform.GetComponent<Camera>();
@@ -27,6 +29,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        openDoorPos = openDoor.transform.position;
+        playerPos = playerObject.transform.position;
         playerCameraView = new Vector3(0, cameraHeight, 0);
         playerCameraObject.transform.position = Vector3.zero + playerCameraView;
         StartCoroutine("RoundStart");
@@ -36,6 +40,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         OpenDoor();
+        GameDone();
     }
     
     private void LateUpdate()
@@ -52,7 +57,6 @@ public class GameManager : MonoBehaviour
         //playerCamera.gameObject.SetActive(true);
         //mainCamera.gameObject.SetActive(false);
     }
-
     private void OpenDoor()
     {
         if (openDoor.transform.position.x >= 4.5f)
@@ -62,8 +66,18 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            openDoorRb.AddForce(Vector3.right * 1.5f, ForceMode.Impulse);
-            
+            openDoorRb.AddForce(Vector3.right * 1.5f, ForceMode.Impulse);          
+        }
+    }
+    private void GameDone()
+    {
+        if(cow.isCatch && horse.isCatch)
+        {
+            IsDoorOpen = false;
+            openDoorRb.isKinematic = false;
+            openDoor.transform.position = openDoorPos;
+            playerObject.transform.position = playerPos;
+
         }
     }
 }

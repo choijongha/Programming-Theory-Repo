@@ -7,6 +7,7 @@ public class HorseMovement : ObjectMovement
     // Start is called before the first frame update
     void Start()
     {
+        IsStart();
         InvokeInstantiate();
         speed = 20;
     }
@@ -19,5 +20,9 @@ public class HorseMovement : ObjectMovement
     protected override void AnimalMovement()
     {
         base.AnimalMovement();
+    }
+    protected override void OnPlayerTrigger()
+    {
+        base.OnPlayerTrigger();
     }
 }
