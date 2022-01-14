@@ -18,12 +18,4 @@ public class CowMovement : ObjectMovement
         AnimalMovement();
 
     }
-    protected override void AnimalMovement()
-    {
-        base.AnimalMovement();
-    }
-    protected override void OnPlayerTrigger()
-    {
-        base.OnPlayerTrigger();
-    }
 }

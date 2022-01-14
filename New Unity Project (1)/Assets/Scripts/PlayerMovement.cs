@@ -89,19 +89,23 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);*/
 
         // Ray로 마우스위치를 가져옴.
-        Vector3 mousePosition = Input.mousePosition;
-        Vector3 playerPosition = transform.position;
-
-        Ray mouseRay = MainManager.playerCamera.ScreenPointToRay(mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(mouseRay, out hit))
+        if (!MainManager.onPauseButton)
         {
-            float dx = hit.point.x - playerPosition.x;
-            float dy = hit.point.z - playerPosition.z;
+            Vector3 mousePosition = Input.mousePosition;
+            Vector3 playerPosition = transform.position;
 
-            float rotateDegree = Mathf.Atan2(dx, dy) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
+            Ray mouseRay = MainManager.playerCamera.ScreenPointToRay(mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(mouseRay, out hit))
+            {
+                float dx = hit.point.x - playerPosition.x;
+                float dy = hit.point.z - playerPosition.z;
+
+                float rotateDegree = Mathf.Atan2(dx, dy) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, rotateDegree, 0f);
+            }
         }
+        
     }
     private void InstantiateParticle()
     {
