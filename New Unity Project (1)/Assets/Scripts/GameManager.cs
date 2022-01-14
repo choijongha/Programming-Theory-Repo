@@ -133,6 +133,10 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainScene");
     }
+    public void StartMenuReturn()
+    {
+        SceneManager.LoadScene(0);
+    }
     private void TimeText()
     {
         if (isRoundStart)
