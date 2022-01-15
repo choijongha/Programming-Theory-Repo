@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// INHERITANCE
 public class ObjectMovement : MonoBehaviour
 {
     public List<GameObject> prefabList;
@@ -29,22 +30,24 @@ public class ObjectMovement : MonoBehaviour
         gameManager = GameObject.Find("Main Manager").GetComponent<GameManager>();
         player = GameObject.Find("Player");
     }
-    protected virtual void IsStart()
+    protected virtual void IsStart(int animalSpeed)
     {
         initialPos = transform.position;
         onInstant = true;
+        speed = animalSpeed;
     }
     protected virtual void AnimalMovement()
     {
+        // ABSTRACTION
         InitialMovemenet();
         OnPlayerTrigger();
         AreaMove();
     }
-    protected virtual void InvokeInstantiate() 
+    protected virtual void InvokeInstantiate(float time) 
     {
         if (onInstant)
         {
-            InvokeRepeating("InstantiateDong", 1f, 1f);
+            InvokeRepeating("InstantiateDong", 1f, time);
         }
         
     }
@@ -130,8 +133,7 @@ public class ObjectMovement : MonoBehaviour
         else if (onArea4)
         {
             transform.position += Vector3.back * speed * Time.deltaTime;
-        }
-        
+        }     
     }   
     protected virtual void OnPlayerTrigger()
     {

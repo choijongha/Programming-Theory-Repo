@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    // ENCAPSULATION
     public bool isRoundStart { get; private set; }
     public bool IsDoorOpen { get; private set; } = false;
     public bool onPauseButton { get; private set; }
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ABSTRACTION
         OpenDoor();
         GameDone();
         TimeText();
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
     
     private void LateUpdate()
     {
+        // ABSTRACTION
         CameraFollowPlayer();
     }
     

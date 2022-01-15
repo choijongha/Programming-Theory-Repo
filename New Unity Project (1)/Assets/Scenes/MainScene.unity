@@ -4533,7 +4533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabList: []
-  speed: 0
+  speed: 20
   isCatch: 0
   dongPrefab: {fileID: 2877897203485488198, guid: 9d6a8d433c7709f4c910aa2825eeeec3, type: 3}
 --- !u!65 &1888145953
