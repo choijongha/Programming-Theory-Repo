@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,13 +8,10 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 mousePos;
 
     private NavMeshAgent playerNavMA;
-    public float speed = 0;
+    [SerializeField] float speed = 0;
     [SerializeField] LayerMask groundlayer;
     [SerializeField] GameObject trail;
     [SerializeField] GameObject catchTrail;
-
-    private float restoreCatchTrail;
-    private bool trailShoot;
     private void Awake()
     {
         MainManager = GameObject.Find("Main Manager").gameObject.GetComponent<GameManager>();
@@ -32,17 +27,11 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playerNavMA.speed = speed;
-        restoreCatchTrail = catchTrail.transform.localPosition.z;
     }
     private void Update()
-    {
-        
+    {       
         PlayerRotate();
         MousePosOnPlane();
-        if (playerNavMA.isStopped == true)
-        {
-            playerNavMA.velocity = Vector3.zero;
-        }
         InstantiateParticle();
     }
     /*private Vector3 MousePosWorldPoint()

@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
 
 public class StartMenu : MonoBehaviour
 {
@@ -16,12 +12,6 @@ public class StartMenu : MonoBehaviour
     void Start()
     {
         InvokeRepeating("StartTitle", 1f, 1f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     public void ClickedStartButton()
     {

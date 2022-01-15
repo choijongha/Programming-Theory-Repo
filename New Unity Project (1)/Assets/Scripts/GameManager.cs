@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -25,12 +22,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject reallyQuitPanel;
     [SerializeField] float doorOpenPower = 3f;
 
-
     private Vector3 playerPos;
     private Rigidbody openDoorRb;
     private Vector3 openDoorPos;
     private Vector3 playerCameraView;
-    float timeAdd ;
+    private float timeAdd ;
     private void Awake()
     {
         playerCamera = playerCameraObject.transform.GetComponent<Camera>();
@@ -57,18 +53,9 @@ public class GameManager : MonoBehaviour
     
     private void LateUpdate()
     {
-        if (isRoundStart)
-        {
-            playerCameraObject.transform.position = playerObject.transform.position + playerCameraView;
-        }
+        CameraFollowPlayer();
     }
-    IEnumerator RoundStart()
-    {
-        yield return new WaitForSeconds(4f);
-        isRoundStart = true;
-        //playerCamera.gameObject.SetActive(true);
-        //mainCamera.gameObject.SetActive(false);
-    }
+    
     private void OpenDoor()
     {
         if (openDoor.transform.position.x >= 4.5f)
@@ -143,6 +130,20 @@ public class GameManager : MonoBehaviour
         {
             timeText.text = $"Time : {timeAdd += Time.deltaTime} ";
         }
+    }
+    private void CameraFollowPlayer()
+    {
+        if (isRoundStart)
+        {
+            playerCameraObject.transform.position = playerObject.transform.position + playerCameraView;
+        }
+    }
+    IEnumerator RoundStart()
+    {
+        yield return new WaitForSeconds(4f);
+        isRoundStart = true;
+        //playerCamera.gameObject.SetActive(true);
+        //mainCamera.gameObject.SetActive(false);
     }
     IEnumerator GameCompleteGUIPanel()
     {
